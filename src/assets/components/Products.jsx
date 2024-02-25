@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { PiCurrencyInr } from "react-icons/pi";
 import Dropdown from './Dropdown';
 import { Link } from 'react-router-dom';
+import Loader from './Loader';
 
 const Products = () => {
   const [product,setproduct]=useState(null)
@@ -33,7 +34,7 @@ const Products = () => {
         </div>
       </div>
     </div>
-  ):(<h1>Loading</h1>)
+  ):(<Loader/>)
 }
 
 export default Products

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from '../../utils/axios'
 import { Link } from 'react-router-dom'
+import Loader from './Loader'
 const Mainservice = () => {
 
     const [catagories,setcatagories]=useState(null)
@@ -23,7 +24,7 @@ const Mainservice = () => {
             </div>
         </div>
     </div>
-  ):(<h1>Loading</h1>)
+  ):(<Loader/>)
 }
 
 export default Mainservice

@@ -37,11 +37,13 @@ export const addcartSlice=createSlice({
             })
         },
         clearcart:(state)=>{
+            if(state.cartitem.length>0){
             state.cartitem=[]
             localStorage.setItem('cartitem',JSON.stringify(state.cartitem))
             toast.error(` all Products remove in your cart `,{
                 position:'bottom-left'
             })
+        }
         },
         decreasecart:(state,action)=>{
             const itemindex=state.cartitem.findIndex((e)=>e.id === action.payload.id)
@@ -82,9 +84,22 @@ export const addcartSlice=createSlice({
             })
             state.carttotalamount=total
             state.carttotalquantity=quantity
+        },
+        checkout:(state)=>{
+            if(state.cartitem.length>0){
+            state.cartitem=[]
+            localStorage.setItem('cartitem',JSON.stringify(state.cartitem))
+            toast.success(` Thanks for buying  `,{
+                position:'bottom-left'
+            })
+        }else{
+            toast.error(` First add product  `,{
+                position:'bottom-left'
+            })
         }
+        },
     }
 })
 
-export const {loadaddcart,removeaddcart,clearcart,decreasecart,increasecart,subtotal}=addcartSlice.actions;
+export const {loadaddcart,removeaddcart,clearcart,decreasecart,increasecart,subtotal,checkout}=addcartSlice.actions;
 export default addcartSlice.reducer;

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { PiCurrencyInr } from "react-icons/pi";
-import { clearcart, decreasecart, increasecart, removeaddcart, subtotal } from '../../reducer/addcartSlice'
+import { checkout, clearcart, decreasecart, increasecart, removeaddcart, subtotal } from '../../reducer/addcartSlice'
 
 const Cart = () => {
     const {cartitem}=useSelector(state=>state.addcart)
@@ -13,6 +13,9 @@ const Cart = () => {
     }
     const clearall=()=>{
         dispatch(clearcart())
+    }
+    const check=()=>{
+        dispatch(checkout())
     }
     const decrease=(e)=>{
         dispatch(decreasecart(e))
@@ -50,7 +53,7 @@ const Cart = () => {
             <div className='w-full h-[30%]  flex items-center justify-between px-2'>
                 <button onClick={()=>clearall()} className='px-4 py-2 border-[1px] border-zinc-800 rounded-sm text-black text-lg font-light'>Clear cart</button>
                 <div className='flex flex-col gap-4'> <h1 className='flex items-center justify-center'><span className='mr-3'>Subtotal</span> <PiCurrencyInr/>{carttotalamount}</h1>
-                <button className='px-4 py-2 bg-blue-600 rounded-sm text-white text-lg font-medium'>CHECKOUT</button><Link className='py-2 border-b-[1px] border-zinc-800 'to='/'>Continue Shopping</Link></div>
+                <button onClick={()=>check()}className='px-4 py-2 bg-blue-600 rounded-sm text-white text-lg font-medium'>CHECKOUT</button><Link className='py-2 border-b-[1px] border-zinc-800 'to='/'>Continue Shopping</Link></div>
                 
             </div>
         </div>
